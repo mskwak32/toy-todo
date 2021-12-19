@@ -33,6 +33,12 @@ android {
         jvmTarget = '1.8'
     }
 
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
     dataBinding {
         enabled = true
     }
