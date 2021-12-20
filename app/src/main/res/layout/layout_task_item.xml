@@ -34,8 +34,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/title"
+            completedTaskText="@{task.completed}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:text="@{task.titleText}"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
