@@ -20,4 +20,6 @@ interface TaskRepository {
     suspend fun deleteTask(task: Task)
 
     suspend fun deleteCompletedTasks()
+
+    fun observeTaskById(taskId: Long): LiveData<Result<Task>>
 }

@@ -26,11 +26,11 @@ class EditViewModel @AssistedInject constructor(
     private val _snackbarMessage = SingleLiveEvent<Int>()
     val snackbarMessage: LiveData<Int> = _snackbarMessage
 
-    private val _onSaveEvent = SingleLiveEvent<Int>()
-    val onSaveEvent: LiveData<Int> = _onSaveEvent
+    private val _onAddEvent = SingleLiveEvent<Unit>()
+    val onAddEvent: LiveData<Unit> = _onAddEvent
 
-    private val _onUpdateEvent = SingleLiveEvent<Int>()
-    val onUpdateEvent: LiveData<Int> = _onUpdateEvent
+    private val _onUpdateEvent = SingleLiveEvent<Unit>()
+    val onUpdateEvent: LiveData<Unit> = _onUpdateEvent
 
     init {
         taskId?.let {
@@ -43,7 +43,7 @@ class EditViewModel @AssistedInject constructor(
                     }
                 }.onFailure {
                     Log.e(TAG, it.toString())
-                    _snackbarMessage.postValue(R.string.error_load_tasks)
+                    _snackbarMessage.value = R.string.error_load_tasks
                 }
             }
         }
@@ -59,11 +59,11 @@ class EditViewModel @AssistedInject constructor(
                 it.title = title.value ?: ""
                 it.memo = memo.value ?: ""
                 repository.updateTask(it)
-                _onUpdateEvent.postValue(R.string.message_task_saved)
+                _onUpdateEvent.call()
             } ?: kotlin.run {            //save new
                 val task = Task(title = title.value ?: "", memo = memo.value ?: "")
                 repository.insertTask(task)
-                _onSaveEvent.postValue(R.string.message_task_added)
+                _onAddEvent.call()
             }
         }
     }

@@ -46,4 +46,4 @@ class HomeViewModel @Inject constructor(
     }
 }
 
-const val EDIT_TASK_RESULT_KEY = "editTaskResultKey"
+internal const val EDIT_TASK_RESULT_KEY = "editTaskResultKey"

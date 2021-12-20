@@ -1,6 +1,7 @@
 package com.mskwak.toy_todo.data
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.map
 import com.mskwak.toy_todo.database.TaskDao
 import com.mskwak.toy_todo.model.Task
 import kotlinx.coroutines.CoroutineDispatcher
@@ -31,7 +32,7 @@ class DefaultTaskRepository @Inject constructor(
     override suspend fun getTaskById(taskId: Long): Result<Task> {
         return taskDao.getTaskById(taskId)?.let {
             Result.success(it)
-        } ?: Result.failure(NoSuchElementException("task not fount"))
+        } ?: Result.failure(Exception("task not found"))
     }
 
     override suspend fun updateCompleted(taskId: Long, completed: Boolean) {
@@ -44,5 +45,15 @@ class DefaultTaskRepository @Inject constructor(
 
     override suspend fun deleteCompletedTasks() {
         taskDao.deleteCompletedTasks()
+    }
+
+    override fun observeTaskById(taskId: Long): LiveData<Result<Task>> {
+        return taskDao.observeTaskById(taskId).map {
+            if (it != null) {
+                Result.success(it)
+            } else {
+                Result.failure(Exception("task not found"))
+            }
+        }
     }
 }

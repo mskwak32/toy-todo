@@ -40,8 +40,7 @@
 
         <argument
             android:name="taskId"
-            app:argType="string"
-            app:nullable="false" />
+            app:argType="long" />
 
     </fragment>
 
