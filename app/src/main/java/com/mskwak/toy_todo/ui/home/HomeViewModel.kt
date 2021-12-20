@@ -33,10 +33,6 @@ class HomeViewModel @Inject constructor(
         _openDetailEvent.value = task.id
     }
 
-    fun showSnackbar(@StringRes stringId: Int) {
-        _snacbarMessage.value = stringId
-    }
-
     fun updateCompleted(task: Task, completed: Boolean) {
         viewModelScope.launch {
             delay(1000)
@@ -45,4 +41,9 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun showEditResultMessage(@StringRes stringId: Int) {
+        _snacbarMessage.value = stringId
+    }
 }
+
+const val EDIT_TASK_RESULT_KEY = "editTaskResultKey"

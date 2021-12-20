@@ -4,16 +4,16 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.mskwak.toy_todo.R
-import com.mskwak.toy_todo.databinding.FragmentMainBinding
+import com.mskwak.toy_todo.databinding.FragmentHomeBinding
 import com.mskwak.toy_todo.util.setupSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-    private lateinit var binding: FragmentMainBinding
+    private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
     private val adapter: TaskAdapter by lazy { TaskAdapter(viewModel) }
 
@@ -22,17 +22,13 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMainBinding.inflate(inflater, container, false).apply {
+        binding = FragmentHomeBinding.inflate(inflater, container, false).apply {
             viewModel = this@HomeFragment.viewModel
             lifecycleOwner = this@HomeFragment.viewLifecycleOwner
-            recyclerView.addItemDecoration(
-                DividerItemDecoration(
-                    requireContext(),
-                    DividerItemDecoration.VERTICAL
-                )
-            )
+            recyclerView.addItemDecoration(ListItemDecoration())
             adapter = this@HomeFragment.adapter
         }
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -50,6 +46,10 @@ class HomeFragment : Fragment() {
         viewModel.openDetailEvent.observe(viewLifecycleOwner) {
             //TODO navigate to detailFragment
         }
+        findNavController().currentBackStackEntry?.savedStateHandle
+            ?.getLiveData<Int>(EDIT_TASK_RESULT_KEY)?.observe(viewLifecycleOwner) {
+                viewModel.showEditResultMessage(it)
+            }
     }
 
     private fun setupSnackbar() {
@@ -70,6 +70,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateToAddNewTask() {
-        //TODO navigate to editFragment(null)
+        val action = HomeFragmentDirections.actionMainFragmentToEditFragment(null)
+        findNavController().navigate(action)
     }
 }

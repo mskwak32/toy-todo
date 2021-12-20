@@ -10,13 +10,14 @@
     <string name="nav_active_task">Active tasks</string>
     <string name="nav_completed">Completed tasks</string>
     <string name="title_hint">Title</string>
-    <string name="description_hint">Memo</string>
+    <string name="memo_hint">Memo</string>
     <string name="message_task_saved">Task saved</string>
     <string name="message_task_added">Task added</string>
     <string name="message_task_deleted">Task was deleted</string>
     <string name="message_marked_complete">Task marked complete</string>
     <string name="message_marked_active">Task marked active</string>
     <string name="message_completed_tasks_cleared">Completed tasks cleared</string>
+    <string name="message_empty_task">Task cannot be empty</string>
     <string name="no_active_tasks">No active tasks.</string>
     <string name="no_completed_tasks">No completed tasks.</string>
     <string name="error_load_tasks">Error while loading tasks.</string>

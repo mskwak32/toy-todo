@@ -25,18 +25,18 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/layout_task_item"
             android:adapter="@{adapter}"
+            android:paddingTop="20dp"
             android:visibility="@{viewModel.isEmptyList? View.GONE : View.VISIBLE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:paddingTop="20dp" />
+            tools:listitem="@layout/layout_task_item" />
 
         <TextView
+            android:id="@+id/emptyText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/emptyText"
-            android:text="@string/no_active_tasks"
             android:gravity="center"
+            android:text="@string/no_active_tasks"
             android:visibility="@{viewModel.isEmptyList? View.VISIBLE : View.GONE}" />
 
 

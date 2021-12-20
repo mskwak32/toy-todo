@@ -7,17 +7,17 @@ import androidx.room.PrimaryKey
 data class Task(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     var title: String = "",
-    var description: String = "",
+    var memo: String = "",
     var isCompleted: Boolean = false
 ) {
 
     fun getTitleText(): String {
-        return if (title.isNotBlank()) title else description
+        return if (title.isNotBlank()) title else memo
     }
 
     val isActive
         get() = !isCompleted
 
     val isEmpty
-        get() = title.isBlank() && description.isBlank()
+        get() = title.isBlank() && memo.isBlank()
 }
