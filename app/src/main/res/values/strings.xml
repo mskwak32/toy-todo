@@ -5,13 +5,9 @@
     <string name="task_detail">Task Detail</string>
 
     <string name="menu_clear_completed">Clear completed</string>
-    <string name="menu_all">All</string>
-    <string name="menu_active">Active</string>
-    <string name="menu_filter">Filter</string>
-    <string name="label_all">All tasks</string>
     <string name="label_active">Active tasks</string>
     <string name="label_complete">Completed tasks</string>
-    <string name="nav_all_task">All tasks</string>
+    <string name="nav_active_task">Active tasks</string>
     <string name="nav_completed">Completed tasks</string>
     <string name="title_hint">Title</string>
     <string name="description_hint">Memo</string>
@@ -21,7 +17,6 @@
     <string name="message_marked_complete">Task marked complete</string>
     <string name="message_marked_active">Task marked active</string>
     <string name="message_completed_tasks_cleared">Completed tasks cleared</string>
-    <string name="no_tasks">No tasks.</string>
     <string name="no_active_tasks">No active tasks.</string>
     <string name="no_completed_tasks">No completed tasks.</string>
     <string name="error_load_tasks">Error while loading tasks.</string>

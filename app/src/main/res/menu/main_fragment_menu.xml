@@ -7,10 +7,4 @@
         android:icon="@drawable/ic_add"
         android:title="@string/add_task"
         app:showAsAction="always" />
-
-    <item
-        android:id="@+id/menu_filter"
-        android:icon="@drawable/ic_filter"
-        android:title="@string/menu_filter"
-        app:showAsAction="ifRoom" />
 </menu>
