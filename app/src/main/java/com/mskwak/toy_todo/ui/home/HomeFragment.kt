@@ -11,11 +11,17 @@ import com.mskwak.toy_todo.databinding.FragmentHomeBinding
 import com.mskwak.toy_todo.util.setupSnackbar
 import com.mskwak.toy_todo.util.showSnackbar
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    private val viewModel: HomeViewModel by viewModels()
+
+    @Inject
+    internal lateinit var viewModelAssistedFactory: HomeViewModel.HomeViewModelAssistedFactory
+    private val viewModel by viewModels<HomeViewModel> {
+        HomeViewModel.provideFactory(viewModelAssistedFactory, isActiveTasks = true)
+    }
     private val adapter: TaskAdapter by lazy { TaskAdapter(viewModel) }
 
     override fun onCreateView(
@@ -40,7 +46,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initObserver() {
-        viewModel.activeTasks.observe(viewLifecycleOwner) {
+        viewModel.tasks.observe(viewLifecycleOwner) {
             adapter.submitList(it)
             viewModel.isEmptyList.value = it.isEmpty()
         }

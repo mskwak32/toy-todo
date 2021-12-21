@@ -47,6 +47,11 @@
     <fragment
         android:id="@+id/CompletedFragmentDest"
         android:name="com.mskwak.toy_todo.ui.completed.CompletedFragment"
-        android:label="@string/label_complete" />
+        android:label="@string/label_complete" >
+
+        <action
+            android:id="@+id/action_completedFragment_to_detailFragment"
+            app:destination="@id/detailFragmentDest"/>
+    </fragment>
 
 </navigation>
