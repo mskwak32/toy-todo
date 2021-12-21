@@ -75,8 +75,9 @@ class DetailFragment : Fragment() {
     }
 
     private fun navigateToEditFragment() {
+        val title = getString(R.string.edit_task)
         val action =
-            DetailFragmentDirections.actionDetailFragmentToEditFragment(args.taskId.toString())
+            DetailFragmentDirections.actionDetailFragmentToEditFragment(args.taskId.toString(), title)
         findNavController().navigate(action)
     }
 }

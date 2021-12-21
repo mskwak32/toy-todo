@@ -2,6 +2,7 @@ package com.mskwak.toy_todo.ui.completed
 
 import android.os.Bundle
 import android.view.*
+import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -72,8 +73,8 @@ class CompletedFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (item.itemId == R.id.menu_deleteCompletedTask) {
-            viewModel.clearCompletedTasks()
+        return if (item.itemId == R.id.menu_completedFragment) {
+            showMoreMenu()
             true
         } else {
             false
@@ -83,6 +84,21 @@ class CompletedFragment : Fragment() {
     private fun navigateToTaskDetail(taskId: Long) {
         val action = CompletedFragmentDirections.actionCompletedFragmentToDetailFragment(taskId)
         findNavController().navigate(action)
+    }
+
+    private fun showMoreMenu() {
+        val view = activity?.findViewById<View>(R.id.menu_completedFragment) ?: return
+        PopupMenu(requireContext(), view).run {
+            menuInflater.inflate(R.menu.completed_fragment_menu_task, menu)
+
+            setOnMenuItemClickListener {
+                if(it.itemId == R.id.menu_clearCompletedTask) {
+                    viewModel.clearCompletedTasks()
+                }
+                true
+            }
+            show()
+        }
     }
 
 }

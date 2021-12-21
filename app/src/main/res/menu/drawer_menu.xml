@@ -3,11 +3,11 @@
 
     <item
         android:id="@id/mainFragmentDest"
-        android:icon="@drawable/ic_agenda_black_24dp"
+        android:icon="@drawable/ic_agenda"
         android:title="@string/nav_active_task" />
 
     <item
         android:id="@id/CompletedFragmentDest"
-        android:icon="@drawable/ic_done_black_24dp"
+        android:icon="@drawable/ic_done_black"
         android:title="@string/nav_completed" />
 </menu>

@@ -28,6 +28,7 @@ class TaskAdapter(private val viewModel: HomeViewModel) :
             binding.apply {
                 this.viewModel = viewModel
                 this.task = task
+                executePendingBindings()
             }
         }
 

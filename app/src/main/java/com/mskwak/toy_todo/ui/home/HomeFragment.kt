@@ -77,7 +77,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateToAddNewTask() {
-        val action = HomeFragmentDirections.actionMainFragmentToEditFragment(null)
+        val title = getString(R.string.new_task)
+        val action = HomeFragmentDirections.actionMainFragmentToEditFragment(null, title)
         findNavController().navigate(action)
     }
 
