@@ -40,7 +40,6 @@ class EditFragment : Fragment() {
         binding = FragmentEditBinding.inflate(inflater, container, false).apply {
             viewModel = this@EditFragment.viewModel
             lifecycleOwner = viewLifecycleOwner
-            fragment = this@EditFragment
         }
 
         imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -63,16 +62,15 @@ class EditFragment : Fragment() {
         view?.setupSnackbar(viewLifecycleOwner, viewModel.snackbarMessage, Snackbar.LENGTH_LONG)
     }
 
-    fun onCancel() {
-        findNavController().popBackStack()
-    }
-
     private fun initObserver() {
         viewModel.onAddEvent.observe(viewLifecycleOwner) {
             finishWithResult(R.string.message_task_added)
         }
         viewModel.onUpdateEvent.observe(viewLifecycleOwner) {
             finishWithResult(R.string.message_task_saved)
+        }
+        viewModel.onCancelEvent.observe(viewLifecycleOwner) {
+            findNavController().popBackStack()
         }
     }
 

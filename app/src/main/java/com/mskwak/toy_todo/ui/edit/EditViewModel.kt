@@ -32,6 +32,9 @@ class EditViewModel @AssistedInject constructor(
     private val _onUpdateEvent = SingleLiveEvent<Unit>()
     val onUpdateEvent: LiveData<Unit> = _onUpdateEvent
 
+    private val _onCancelEvent = SingleLiveEvent<Unit>()
+    val onCancelEvent: LiveData<Unit> = _onCancelEvent
+
     init {
         taskId?.let {
             viewModelScope.launch {
@@ -66,6 +69,10 @@ class EditViewModel @AssistedInject constructor(
                 _onAddEvent.call()
             }
         }
+    }
+
+    fun onCancel() {
+        _onCancelEvent.call()
     }
 
     @AssistedFactory
