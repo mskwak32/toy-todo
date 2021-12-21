@@ -5,7 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 class ListItemDecoration : RecyclerView.ItemDecoration() {
-    private val padding = 10
+    private val padding = 20
 
     override fun getItemOffsets(
         outRect: Rect,

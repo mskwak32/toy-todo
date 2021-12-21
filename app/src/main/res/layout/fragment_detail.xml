@@ -35,7 +35,7 @@
                     android:background="@drawable/detail_textview_bg"
                     android:padding="16dp"
                     android:text='@{viewModel.task.title?? ""}'
-                    android:textSize="20sp"
+                    android:textAppearance="@style/textViewTextStyle"
                     tools:text="title" />
 
                 <TextView
@@ -46,7 +46,7 @@
                     android:background="@drawable/detail_textview_bg"
                     android:padding="16dp"
                     android:text='@{viewModel.task.memo?? ""}'
-                    android:textSize="20sp"
+                    android:textAppearance="@style/textViewTextStyle"
                     tools:text="memo" />
 
             </LinearLayout>

@@ -36,7 +36,7 @@
                     android:hint="@string/title_hint"
                     android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
-                    app:boxStrokeColor="@color/secondaryColor"
+                    app:boxStrokeColor="@color/secondaryLightColor"
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -54,7 +54,7 @@
                     android:hint="@string/memo_hint"
                     android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
-                    app:boxStrokeColor="@color/secondaryColor"
+                    app:boxStrokeColor="@color/secondaryLightColor"
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
