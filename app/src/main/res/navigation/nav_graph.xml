@@ -13,10 +13,12 @@
 
         <action
             android:id="@+id/action_homeFragment_to_editFragment"
-            app:destination="@id/editFragmentDest" />
+            app:destination="@id/editFragmentDest"
+            app:enterAnim="@anim/nav_default_enter_anim" />
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
-            app:destination="@id/detailFragmentDest" />
+            app:destination="@id/detailFragmentDest"
+            app:enterAnim="@anim/nav_default_enter_anim" />
 
     </fragment>
 
@@ -46,7 +48,8 @@
 
         <action
             android:id="@+id/action_detailFragment_to_editFragment"
-            app:destination="@id/editFragmentDest" />
+            app:destination="@id/editFragmentDest"
+            app:enterAnim="@anim/nav_default_enter_anim" />
 
         <argument
             android:name="taskId"
@@ -62,7 +65,8 @@
 
         <action
             android:id="@+id/action_completedFragment_to_detailFragment"
-            app:destination="@id/detailFragmentDest" />
+            app:destination="@id/detailFragmentDest"
+            app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
 
 </navigation>

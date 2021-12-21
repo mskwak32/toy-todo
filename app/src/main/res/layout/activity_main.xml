@@ -24,6 +24,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
                 android:minHeight="?attr/actionBarSize"
+                app:titleCentered="true"
                 android:theme="@style/toolbarBackArrowColor"
                 app:titleTextColor="@color/secondaryTextColor" />
 
