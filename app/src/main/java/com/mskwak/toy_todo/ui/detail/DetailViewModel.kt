@@ -30,9 +30,6 @@ class DetailViewModel @AssistedInject constructor(
     private val _onDeletedEvent = SingleLiveEvent<Unit>()
     val onDeleteEvent: LiveData<Unit> = _onDeletedEvent
 
-    private val _onCompleteEvent = SingleLiveEvent<Unit>()
-    val onCompleteEvent: LiveData<Unit> = _onCompleteEvent
-
     private fun computeResult(result: Result<Task>): Task? {
         return if (result.isSuccess) {
             result.getOrNull()
@@ -43,11 +40,12 @@ class DetailViewModel @AssistedInject constructor(
         }
     }
 
-    fun completeTask() {
+    fun completeTask(complete: Boolean) {
         task.value?.let {
             viewModelScope.launch {
-                repository.updateCompleted(taskId, true)
-                _onCompleteEvent.call()
+                repository.updateCompleted(taskId, complete)
+                _snackbarMessage.value =
+                    if (complete) R.string.message_marked_complete else R.string.message_marked_active
             }
         }
     }

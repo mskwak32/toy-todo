@@ -12,10 +12,8 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.mskwak.toy_todo.R
 import com.mskwak.toy_todo.databinding.FragmentDetailBinding
-import com.mskwak.toy_todo.ui.home.EDIT_TASK_RESULT_KEY
 import com.mskwak.toy_todo.ui.main.MainActivity
 import com.mskwak.toy_todo.util.setupSnackbar
-import com.mskwak.toy_todo.util.showSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -59,9 +57,6 @@ class DetailFragment : Fragment() {
         viewModel.onEditEvent.observe(viewLifecycleOwner) {
             navigateToEditFragment()
         }
-        viewModel.onCompleteEvent.observe(viewLifecycleOwner) {
-            finishWithMessage(R.string.message_marked_complete)
-        }
     }
 
     private fun finishWithMessage(@StringRes stringId: Int) {
@@ -72,7 +67,10 @@ class DetailFragment : Fragment() {
     private fun navigateToEditFragment() {
         val title = getString(R.string.edit_task)
         val action =
-            DetailFragmentDirections.actionDetailFragmentToEditFragment(args.taskId.toString(), title)
+            DetailFragmentDirections.actionDetailFragmentToEditFragment(
+                args.taskId.toString(),
+                title
+            )
         findNavController().navigate(action)
     }
 }

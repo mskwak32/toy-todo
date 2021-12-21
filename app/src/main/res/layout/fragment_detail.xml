@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:onClick="@{() -> viewModel.completeTask()}"
+                android:onClick="@{() -> viewModel.completeTask(!viewModel.task.completed)}"
                 android:orientation="vertical"
                 android:padding="4dp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -74,13 +74,13 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_done_black" />
+                    android:src="@{viewModel.task.completed? @drawable/ic_undo_black : @drawable/ic_done_black}" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
-                    android:text="@string/done" />
+                    android:text="@{viewModel.task.completed? @string/active : @string/done}" />
 
             </LinearLayout>
 
