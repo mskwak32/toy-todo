@@ -9,7 +9,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.mskwak.toy_todo.R
 import com.mskwak.toy_todo.databinding.FragmentHomeBinding
 import com.mskwak.toy_todo.util.setupSnackbar
-import com.mskwak.toy_todo.util.showSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -53,14 +52,10 @@ class HomeFragment : Fragment() {
         viewModel.openDetailEvent.observe(viewLifecycleOwner) {
             navigateToTaskDetail(it)
         }
-        findNavController().currentBackStackEntry?.savedStateHandle
-            ?.getLiveData<Int>(EDIT_TASK_RESULT_KEY)?.observe(viewLifecycleOwner) {
-                view?.showSnackbar(getString(it), Snackbar.LENGTH_LONG)
-            }
     }
 
     private fun setupSnackbar() {
-        view?.setupSnackbar(viewLifecycleOwner, viewModel.snacbarMessage, Snackbar.LENGTH_LONG)
+        view?.setupSnackbar(viewLifecycleOwner, viewModel.snacbarMessage, Snackbar.LENGTH_SHORT)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -78,12 +73,12 @@ class HomeFragment : Fragment() {
 
     private fun navigateToAddNewTask() {
         val title = getString(R.string.new_task)
-        val action = HomeFragmentDirections.actionMainFragmentToEditFragment(null, title)
+        val action = HomeFragmentDirections.actionHomeFragmentToEditFragment(null, title)
         findNavController().navigate(action)
     }
 
     private fun navigateToTaskDetail(taskId: Long) {
-        val action = HomeFragmentDirections.actionMainFragmentToDetailFragment(taskId)
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(taskId)
         findNavController().navigate(action)
     }
 }

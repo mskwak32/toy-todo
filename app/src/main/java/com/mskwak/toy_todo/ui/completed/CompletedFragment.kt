@@ -58,14 +58,10 @@ class CompletedFragment : Fragment() {
         viewModel.openDetailEvent.observe(viewLifecycleOwner) {
             navigateToTaskDetail(it)
         }
-        findNavController().currentBackStackEntry?.savedStateHandle
-            ?.getLiveData<Int>(EDIT_TASK_RESULT_KEY)?.observe(viewLifecycleOwner) {
-                view?.showSnackbar(getString(it), Snackbar.LENGTH_LONG)
-            }
     }
 
     private fun setupSnacbar() {
-        view?.setupSnackbar(viewLifecycleOwner, viewModel.snacbarMessage, Snackbar.LENGTH_LONG)
+        view?.setupSnackbar(viewLifecycleOwner, viewModel.snacbarMessage, Snackbar.LENGTH_SHORT)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

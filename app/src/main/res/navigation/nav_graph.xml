@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragmentDest">
+    app:startDestination="@id/homeFragmentDest">
 
     <fragment
-        android:id="@+id/mainFragmentDest"
+        android:id="@+id/homeFragmentDest"
         android:name="com.mskwak.toy_todo.ui.home.HomeFragment"
-        android:label="@string/app_name">
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_home">
 
         <action
-            android:id="@+id/action_mainFragment_to_editFragment"
+            android:id="@+id/action_homeFragment_to_editFragment"
             app:destination="@id/editFragmentDest" />
         <action
-            android:id="@+id/action_mainFragment_to_detailFragment"
+            android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragmentDest" />
 
     </fragment>
@@ -21,7 +23,8 @@
     <fragment
         android:id="@+id/editFragmentDest"
         android:name="com.mskwak.toy_todo.ui.edit.EditFragment"
-        android:label="{title}">
+        android:label="{title}"
+        tools:layout="@layout/fragment_edit">
 
         <argument
             android:name="taskId"
@@ -38,7 +41,8 @@
     <fragment
         android:id="@+id/detailFragmentDest"
         android:name="com.mskwak.toy_todo.ui.detail.DetailFragment"
-        android:label="@string/task_detail">
+        android:label="@string/task_detail"
+        tools:layout="@layout/fragment_detail">
 
         <action
             android:id="@+id/action_detailFragment_to_editFragment"
@@ -53,7 +57,8 @@
     <fragment
         android:id="@+id/CompletedFragmentDest"
         android:name="com.mskwak.toy_todo.ui.completed.CompletedFragment"
-        android:label="@string/label_complete">
+        android:label="@string/label_complete"
+        tools:layout="@layout/fragment_completed">
 
         <action
             android:id="@+id/action_completedFragment_to_detailFragment"

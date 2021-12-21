@@ -15,7 +15,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.mskwak.toy_todo.R
 import com.mskwak.toy_todo.databinding.FragmentEditBinding
-import com.mskwak.toy_todo.ui.home.EDIT_TASK_RESULT_KEY
+import com.mskwak.toy_todo.ui.main.MainActivity
 import com.mskwak.toy_todo.util.setupSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -64,21 +64,20 @@ class EditFragment : Fragment() {
 
     private fun initObserver() {
         viewModel.onAddEvent.observe(viewLifecycleOwner) {
-            finishWithResult(R.string.message_task_added)
+            finishWithMessage(R.string.message_task_added)
         }
         viewModel.onUpdateEvent.observe(viewLifecycleOwner) {
-            finishWithResult(R.string.message_task_saved)
+            finishWithMessage(R.string.message_task_saved)
         }
         viewModel.onCancelEvent.observe(viewLifecycleOwner) {
             findNavController().popBackStack()
         }
     }
 
-    private fun finishWithResult(@StringRes stringId: Int) {
-        with(findNavController()) {
-            previousBackStackEntry?.savedStateHandle?.set(EDIT_TASK_RESULT_KEY, stringId)
-            popBackStack()
-        }
+
+    private fun finishWithMessage(@StringRes stringId: Int) {
+        (activity as? MainActivity)?.showSnacbarMessage(getString(stringId))
+        findNavController().popBackStack()
     }
 
     override fun onDestroyView() {

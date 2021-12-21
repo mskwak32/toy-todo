@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@id/mainFragmentDest"
+        android:id="@id/homeFragmentDest"
         android:icon="@drawable/ic_agenda"
         android:title="@string/nav_active_task" />
 

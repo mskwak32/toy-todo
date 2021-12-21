@@ -10,7 +10,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.mskwak.toy_todo.R
+import com.mskwak.toy_todo.util.showSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,7 +33,7 @@ class MainActivity : AppCompatActivity() {
                 as NavHostFragment
         val navController = navHost.navController
         appBarConfig =
-            AppBarConfiguration.Builder(R.id.mainFragmentDest, R.id.CompletedFragmentDest)
+            AppBarConfiguration.Builder(R.id.homeFragmentDest, R.id.CompletedFragmentDest)
                 .setOpenableLayout(drawerLayout)
                 .build()
         setupActionBarWithNavController(navController, appBarConfig)
@@ -41,5 +43,9 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return findNavController(R.id.fragmentContainer).navigateUp(appBarConfig)
                 || super.onSupportNavigateUp()
+    }
+
+    fun showSnacbarMessage(message: String) {
+        drawerLayout.showSnackbar(message, Snackbar.LENGTH_LONG)
     }
 }
