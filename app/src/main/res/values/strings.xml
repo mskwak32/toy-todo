@@ -1,13 +1,11 @@
 <resources>
     <string name="app_name">Toy Todo</string>
     <string name="todo">Todo</string>
-    <string name="add_task">New Task</string>
     <string name="edit_task">Edit Task</string>
     <string name="task_detail">Task Detail</string>
     <string name="new_task">New Task</string>
 
     <string name="menu_clear_completed">Clear completed</string>
-    <string name="label_active">Active tasks</string>
     <string name="label_complete">Completed tasks</string>
     <string name="nav_active_task">Active tasks</string>
     <string name="nav_completed">Completed tasks</string>
