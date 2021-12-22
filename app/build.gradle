@@ -17,7 +17,7 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
-        setProperty("archivesBaseName","$rootProject.name $versionName-$versionCode")
+        setProperty("archivesBaseName", "$rootProject.name $versionName-$versionCode")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -48,6 +48,7 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def appCompatVersion = "1.4.0"
     def materialVersion = "1.4.0"
     def constraintVersion = "2.1.2"

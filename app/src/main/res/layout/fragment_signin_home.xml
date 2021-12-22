@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/splash_bg"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/signInEmail"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
+            android:text="@string/siginin_with_email"
+            app:icon="@drawable/ic_email"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/signInGoogle"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:text="@string/signin_with_google"
+            android:textColor="@color/black"
+            app:icon="@drawable/ic_google"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signInEmail" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
