@@ -8,8 +8,8 @@
     <color name="secondaryDarkColor">#213740</color>
     <color name="primaryTextColor">#e8eaf6</color>
     <color name="secondaryTextColor">#fbfdf8</color>
-    <color name="cardBackground">#eff1ec</color>
-    <color name="cardTextColor">#404943</color>
+    <color name="light_green_50">#eff1ec</color>
+    <color name="green_800">#404943</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>

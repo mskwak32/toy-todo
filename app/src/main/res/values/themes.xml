@@ -18,8 +18,14 @@
         <item name="android:textColorSecondary">@color/secondaryTextColor</item>
     </style>
 
-    <style name="textViewTextStyle" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">@color/cardTextColor</item>
+    <style name="cardTextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/green_800</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="detailTaskTextViewStyle" parent="Widget.MaterialComponents.TextView">
+        <item name="background">@drawable/detail_textview_bg</item>
+        <item name="android:textColor">@color/green_800</item>
         <item name="android:textSize">20sp</item>
     </style>
 </resources>

@@ -5,6 +5,6 @@
     <item
         android:id="@+id/menu_addTask"
         android:icon="@drawable/ic_add"
-        android:title="@string/add_task"
+        android:title="@string/new_task"
         app:showAsAction="always" />
 </menu>

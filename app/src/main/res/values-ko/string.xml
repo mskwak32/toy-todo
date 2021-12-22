@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Toy Todo</string>
+    <string name="todo">Todo</string>
+    <string name="edit_task">편집</string>
+    <string name="task_detail">상세보기</string>
+    <string name="new_task">새 작업</string>
+
+    <string name="menu_clear_completed">완료된 작업 삭제</string>
+    <string name="label_complete">완료 목록</string>
+    <string name="nav_active_task">해야할 작업</string>
+    <string name="nav_completed">완료된 작업</string>
+    <string name="title_hint">제목</string>
+    <string name="memo_hint">메모</string>
+    <string name="message_task_saved">작업이 저장되었습니다.</string>
+    <string name="message_task_added">작업이 추가되었습니다.</string>
+    <string name="message_task_deleted">작업이 삭제되었습니다.</string>
+    <string name="message_marked_complete">완료처리되었습니다.</string>
+    <string name="message_marked_active">작업이 복원되었습니다.</string>
+    <string name="message_completed_tasks_cleared">완료된 작업이 삭제되었습니다.</string>
+    <string name="message_empty_task">빈 작업은 생성할 수 없습니다.</string>
+    <string name="no_active_tasks">해야할 작업이 없습니다.</string>
+    <string name="no_completed_tasks">완료된 작업이 없습니다.</string>
+    <string name="error_load_tasks">작업을 불러오는 중 오류가 발생하였습니다.</string>
+
+    <string name="done">완료</string>
+    <string name="active">복원</string>
+    <string name="edit">편집</string>
+    <string name="delete">삭제</string>
+    <string name="cancel">취소</string>
+    <string name="save">저장</string>
+    <string name="menu">메뉴</string>
+</resources>

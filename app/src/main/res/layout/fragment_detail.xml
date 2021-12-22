@@ -30,23 +30,23 @@
 
                 <TextView
                     android:id="@+id/title"
+                    style="@style/detailTaskTextViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/detail_textview_bg"
                     android:padding="16dp"
                     android:text='@{viewModel.task.title?? ""}'
-                    android:textAppearance="@style/textViewTextStyle"
                     tools:text="title" />
 
                 <TextView
                     android:id="@+id/memo"
+                    style="@style/detailTaskTextViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/detail_textview_bg"
                     android:padding="16dp"
                     android:text='@{viewModel.task.memo?? ""}'
-                    android:textAppearance="@style/textViewTextStyle"
                     tools:text="memo" />
 
             </LinearLayout>
@@ -64,6 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:minWidth="48dp"
                 android:onClick="@{() -> viewModel.completeTask(!viewModel.task.completed)}"
                 android:orientation="vertical"
                 android:padding="4dp"
@@ -74,7 +75,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@{viewModel.task.completed? @drawable/ic_undo_black : @drawable/ic_done_black}" />
+                    android:src="@{viewModel.task.completed? @drawable/ic_undo : @drawable/ic_done}" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -89,6 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:minWidth="48dp"
                 android:onClick="@{() -> viewModel.openEdit()}"
                 android:orientation="vertical"
                 android:padding="4dp"
@@ -99,7 +101,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_edit_black" />
+                    android:src="@drawable/ic_edit" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -114,6 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:minWidth="48dp"
                 android:onClick="@{() -> viewModel.deleteTask()}"
                 android:orientation="vertical"
                 android:padding="4dp"
@@ -124,7 +127,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_delete_black" />
+                    android:src="@drawable/ic_delete" />
 
                 <TextView
                     android:layout_width="wrap_content"
