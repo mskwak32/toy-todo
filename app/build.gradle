@@ -100,4 +100,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    //firebase auth
+    implementation "com.google.firebase:firebase-auth-ktx"
 }

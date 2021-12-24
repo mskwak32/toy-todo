@@ -2,6 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mskwak.toy_todo.ui.sign_in.SignInViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,6 +22,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
             app:errorEnabled="true"
+            app:error="@{viewModel.isEmailError()? @string/email_error : null}"
+            android:hint="@string/email"
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
@@ -21,6 +32,8 @@
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
                 android:inputType="textEmailAddress"
+                android:onTextChanged="@{() -> viewModel.onEmailTextChange()}"
+                android:text="@={viewModel.email}"
                 android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -30,6 +43,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/next"
+            android:onClick="@{() -> viewModel.onNext()}"
+            android:visibility="@{viewModel.isNewUser()? View.GONE : View.VISIBLE}"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/emailInputLayout" />
 
@@ -38,25 +53,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:visibility="@{viewModel.isNewUser()? View.VISIBLE : View.GONE}"
             app:layout_constraintTop_toBottomOf="@id/emailInputLayout">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/userNameInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/user_name"
-                app:errorEnabled="true"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <EditText
-                    android:id="@+id/userNameInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:maxLines="1" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passwordInputLayout"
@@ -66,13 +64,16 @@
                 android:hint="@string/new_password"
                 app:endIconMode="password_toggle"
                 app:errorEnabled="true"
-                app:layout_constraintTop_toBottomOf="@id/userNameInputLayout">
+                app:error="@{viewModel.isPasswordError()? @string/new_password_error : null}"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
                     android:id="@+id/passwordInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionDone"
+                    android:text="@={viewModel.password}"
+                    android:onTextChanged="@{() -> viewModel.onPasswordTextChanged()}"
                     android:inputType="textPassword"
                     android:maxLines="1" />
 
@@ -83,6 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/save"
+                android:onClick="@{() -> viewModel.onSaveNewUser()}"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/passwordInputLayout" />
 

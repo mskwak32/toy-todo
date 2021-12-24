@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/siginin_nav_graph"
+    app:startDestination="@id/signInHomeFragmentDest">
+
+    <fragment
+        android:id="@+id/signInHomeFragmentDest"
+        android:name="com.mskwak.toy_todo.ui.sign_in.SignInHomeFragment"
+        android:label="@string/todo"
+        tools:layout="@layout/fragment_signin_home">
+
+        <action
+            android:id="@+id/action_siginInHomeFragment_to_signInFragment"
+            app:destination="@id/signInFragmentDest"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signInFragmentDest"
+        android:name="com.mskwak.toy_todo.ui.sign_in.SignInFragment"
+        android:label="@string/signin"
+        tools:layout="@layout/fragment_signin">
+
+        <action
+            android:id="@+id/signInFragment_to_passwordFragment"
+            app:destination="@id/passwordFragmentDest"
+            app:enterAnim="@animator/nav_default_enter_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/passwordFragmentDest"
+        android:name="com.mskwak.toy_todo.ui.sign_in.PasswordFragment"
+        android:label="@string/signin"
+        tools:layout="@layout/fragment_password">
+
+        <argument
+            android:name="email"
+            app:argType="string"
+            app:nullable="false" />
+
+        <action
+            android:id="@+id/passwordFragment_to_recoverPasswordFragment"
+            app:destination="@id/recoverPasswordFragmentDest"
+            app:enterAnim="@animator/nav_default_enter_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/recoverPasswordFragmentDest"
+        android:name="com.mskwak.toy_todo.ui.sign_in.RecoverPasswordFragment"
+        android:label="@string/recover_password"
+        tools:layout="@layout/fragment_recover_password">
+
+        <argument
+            android:name="email"
+            app:argType="string"
+            app:nullable="false" />
+
+
+    </fragment>
+
+</navigation>

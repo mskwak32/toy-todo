@@ -1,20 +1,20 @@
 package com.mskwak.toy_todo.ui.home
 
-import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import com.mskwak.toy_todo.R
 import com.mskwak.toy_todo.databinding.FragmentHomeBinding
-import com.mskwak.toy_todo.util.setupSnackbar
+import com.mskwak.toy_todo.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
-    private lateinit var binding: FragmentHomeBinding
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+    override val layoutResId = R.layout.fragment_home
 
     @Inject
     internal lateinit var viewModelAssistedFactory: HomeViewModel.HomeViewModelAssistedFactory
@@ -23,25 +23,17 @@ class HomeFragment : Fragment() {
     }
     private val adapter: TaskAdapter by lazy { TaskAdapter(viewModel) }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentHomeBinding.inflate(inflater, container, false).apply {
-            viewModel = this@HomeFragment.viewModel
-            lifecycleOwner = this@HomeFragment.viewLifecycleOwner
-            recyclerView.addItemDecoration(ListItemDecoration())
-            adapter = this@HomeFragment.adapter
-        }
-        setHasOptionsMenu(true)
-        return binding.root
+    override fun getSnackbarEvent(): LiveData<Int> = viewModel.snacbarMessage
+
+    override fun initDataBinding() {
+        binding.viewModel = viewModel
+        binding.adapter = adapter
+        binding.recyclerView.addItemDecoration(ListItemDecoration())
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initState() {
+        setHasOptionsMenu(true)
         initObserver()
-        setupSnackbar()
     }
 
     private fun initObserver() {
@@ -52,10 +44,6 @@ class HomeFragment : Fragment() {
         viewModel.openDetailEvent.observe(viewLifecycleOwner) {
             navigateToTaskDetail(it)
         }
-    }
-
-    private fun setupSnackbar() {
-        view?.setupSnackbar(viewLifecycleOwner, viewModel.snacbarMessage, Snackbar.LENGTH_SHORT)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

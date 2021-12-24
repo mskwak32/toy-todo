@@ -1,26 +1,25 @@
 package com.mskwak.toy_todo.ui.completed
 
-import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import android.widget.PopupMenu
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import com.mskwak.toy_todo.R
 import com.mskwak.toy_todo.databinding.FragmentCompletedBinding
-import com.mskwak.toy_todo.ui.home.EDIT_TASK_RESULT_KEY
+import com.mskwak.toy_todo.ui.base.BaseFragment
 import com.mskwak.toy_todo.ui.home.HomeViewModel
 import com.mskwak.toy_todo.ui.home.ListItemDecoration
 import com.mskwak.toy_todo.ui.home.TaskAdapter
-import com.mskwak.toy_todo.util.setupSnackbar
-import com.mskwak.toy_todo.util.showSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CompletedFragment : Fragment() {
-    private lateinit var binding: FragmentCompletedBinding
+class CompletedFragment : BaseFragment<FragmentCompletedBinding>() {
+    override val layoutResId = R.layout.fragment_completed
 
     @Inject
     internal lateinit var viewModelAssistedFactory: HomeViewModel.HomeViewModelAssistedFactory
@@ -29,24 +28,16 @@ class CompletedFragment : Fragment() {
     }
     private val adapter: TaskAdapter by lazy { TaskAdapter(viewModel) }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentCompletedBinding.inflate(inflater, container, false).apply {
-            viewModel = this@CompletedFragment.viewModel
-            lifecycleOwner = viewLifecycleOwner
-            recyclerView.addItemDecoration(ListItemDecoration())
-            adapter = this@CompletedFragment.adapter
-        }
-        setHasOptionsMenu(true)
-        return binding.root
+    override fun getSnackbarEvent(): LiveData<Int> = viewModel.snacbarMessage
+
+    override fun initDataBinding() {
+        binding.viewModel = viewModel
+        binding.adapter = adapter
+        binding.recyclerView.addItemDecoration(ListItemDecoration())
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupSnacbar()
+    override fun initState() {
+        setHasOptionsMenu(true)
         initObserver()
     }
 
@@ -58,10 +49,6 @@ class CompletedFragment : Fragment() {
         viewModel.openDetailEvent.observe(viewLifecycleOwner) {
             navigateToTaskDetail(it)
         }
-    }
-
-    private fun setupSnacbar() {
-        view?.setupSnackbar(viewLifecycleOwner, viewModel.snacbarMessage, Snackbar.LENGTH_SHORT)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -88,7 +75,7 @@ class CompletedFragment : Fragment() {
             menuInflater.inflate(R.menu.completed_fragment_menu_task, menu)
 
             setOnMenuItemClickListener {
-                if(it.itemId == R.id.menu_clearCompletedTask) {
+                if (it.itemId == R.id.menu_clearCompletedTask) {
                     viewModel.clearCompletedTasks()
                 }
                 true
