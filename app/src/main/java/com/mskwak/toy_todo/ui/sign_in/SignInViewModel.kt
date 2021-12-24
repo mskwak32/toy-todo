@@ -11,6 +11,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.mskwak.toy_todo.R
 import com.mskwak.toy_todo.util.SingleLiveEvent
+import com.mskwak.toy_todo.util.TextUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -38,7 +39,7 @@ class SignInViewModel @Inject constructor() : ViewModel() {
     val password = MutableLiveData<String>()
 
     fun onNext() {
-        if (email.value.isNullOrBlank() || !checkEmailFormat()) {
+        if (email.value.isNullOrBlank() || !TextUtil.checkEmailFormat(email.value)) {
             _emailErrorMessage.value = R.string.email_error
             return
         }
@@ -64,11 +65,6 @@ class SignInViewModel @Inject constructor() : ViewModel() {
                 }
             }
         }
-    }
-
-    private fun checkEmailFormat(): Boolean {
-        val pattern = android.util.Patterns.EMAIL_ADDRESS
-        return pattern.matcher(email.value!!).matches()
     }
 
     fun onSaveNewUser() {

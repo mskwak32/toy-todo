@@ -20,12 +20,6 @@ class SignInFragment : BaseFragment<FragmentSigninBinding>() {
     }
 
     override fun initState() {
-        initObserver()
-    }
-
-    override fun getSnackbarEvent(): LiveData<Int> = viewModel.snackbarMessage
-
-    private fun initObserver() {
         viewModel.onNextEvent.observe(viewLifecycleOwner) {
             navigateToPassword()
         }
@@ -39,6 +33,8 @@ class SignInFragment : BaseFragment<FragmentSigninBinding>() {
             binding.passwordInputLayout.error = stringRes?.let { getString(it) }
         }
     }
+
+    override fun getSnackbarEvent(): LiveData<Int> = viewModel.snackbarMessage
 
     private fun navigateToPassword() {
         val action = SignInFragmentDirections.signInFragmentToPasswordFragment()

@@ -49,7 +49,23 @@
         android:label="@string/recover_password"
         tools:layout="@layout/fragment_recover_password">
 
+        <action
+            android:id="@+id/showRecoverPasswordAlertDialog"
+            app:destination="@id/recoverPasswordAlertDialogDest" />
+
 
     </fragment>
+
+    <dialog
+        android:id="@+id/recoverPasswordAlertDialogDest"
+        android:name="com.mskwak.toy_todo.ui.dialog.RecoverPasswordAlertDialog"
+        tools:layout="@layout/dialog_recover_password_alert">
+
+        <argument
+            android:name="email"
+            app:argType="string"
+            app:nullable="false" />
+
+    </dialog>
 
 </navigation>

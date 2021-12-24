@@ -29,6 +29,9 @@ class PasswordViewModel @Inject constructor() : ViewModel() {
     private val _snackbarMessage = SingleLiveEvent<Int>()
     val snackbarMessage: LiveData<Int> = _snackbarMessage
 
+    private val _inProgress = MutableLiveData(false)
+    val inProgress: LiveData<Boolean> = _inProgress
+
     fun onSignIn() {
         if (password.value.isNullOrBlank()) {
             _snackbarMessage.value = R.string.enter_your_password
@@ -39,6 +42,8 @@ class PasswordViewModel @Inject constructor() : ViewModel() {
             _snackbarMessage.value = R.string.message_authentication_fail
             return
         }
+
+        _inProgress.value = true
         auth.signInWithEmailAndPassword(email, password.value!!)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -59,6 +64,7 @@ class PasswordViewModel @Inject constructor() : ViewModel() {
                         }
                     }
                 }
+                _inProgress.value = false
             }
     }
 

@@ -28,4 +28,8 @@
         <item name="android:textColor">@color/green_800</item>
         <item name="android:textSize">20sp</item>
     </style>
+
+    <style name="recoverPasswordTextColor">
+        <item name="android:textColor">@color/primaryDarkColor</item>
+    </style>
 </resources>

@@ -30,10 +30,6 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     }
 
     override fun initState() {
-        initObserver()
-    }
-
-    private fun initObserver() {
         viewModel.onDeleteEvent.observe(viewLifecycleOwner) {
             finishWithMessage(R.string.message_task_deleted)
         }
