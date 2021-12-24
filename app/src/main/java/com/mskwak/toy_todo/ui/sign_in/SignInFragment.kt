@@ -27,15 +27,21 @@ class SignInFragment : BaseFragment<FragmentSigninBinding>() {
 
     private fun initObserver() {
         viewModel.onNextEvent.observe(viewLifecycleOwner) {
-            navigateToPassword(it)
+            navigateToPassword()
         }
         viewModel.onSaveNewUserEvent.observe(viewLifecycleOwner) {
             goToMainActivity()
         }
+        viewModel.emailErrorMessage.observe(viewLifecycleOwner) { stringRes ->
+            binding.emailInputLayout.error = stringRes?.let { getString(it) }
+        }
+        viewModel.pwErrorMessage.observe(viewLifecycleOwner) { stringRes ->
+            binding.passwordInputLayout.error = stringRes?.let { getString(it) }
+        }
     }
 
-    private fun navigateToPassword(email: String) {
-        val action = SignInFragmentDirections.signInFragmentToPasswordFragment(email)
+    private fun navigateToPassword() {
+        val action = SignInFragmentDirections.signInFragmentToPasswordFragment()
         findNavController().navigate(action)
     }
 

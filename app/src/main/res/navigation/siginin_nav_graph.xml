@@ -32,14 +32,9 @@
 
     <fragment
         android:id="@+id/passwordFragmentDest"
-        android:name="com.mskwak.toy_todo.ui.sign_in.PasswordFragment"
+        android:name="com.mskwak.toy_todo.ui.sign_in.password.PasswordFragment"
         android:label="@string/signin"
         tools:layout="@layout/fragment_password">
-
-        <argument
-            android:name="email"
-            app:argType="string"
-            app:nullable="false" />
 
         <action
             android:id="@+id/passwordFragment_to_recoverPasswordFragment"
@@ -50,14 +45,9 @@
 
     <fragment
         android:id="@+id/recoverPasswordFragmentDest"
-        android:name="com.mskwak.toy_todo.ui.sign_in.RecoverPasswordFragment"
+        android:name="com.mskwak.toy_todo.ui.sign_in.password.RecoverPasswordFragment"
         android:label="@string/recover_password"
         tools:layout="@layout/fragment_recover_password">
-
-        <argument
-            android:name="email"
-            app:argType="string"
-            app:nullable="false" />
 
 
     </fragment>

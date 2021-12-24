@@ -50,4 +50,5 @@
     <string name="new_password">New password</string>
     <string name="new_password_error">Use at least 6 characters and a mix of letters and numbers</string>
     <string name="message_authentication_fail">Authentication failed.\nPlease check network.</string>
+    <string name="message_too_many_request_auth">Too many authentication attempts were made.\nPlease try again later.</string>
 </resources>
