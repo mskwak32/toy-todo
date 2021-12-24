@@ -47,7 +47,7 @@ class PasswordViewModel @Inject constructor() : ViewModel() {
         auth.signInWithEmailAndPassword(email, password.value!!)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.i(TAG, "signInWithEmail: success")
+                    Log.d(TAG, "signInWithEmail: success")
                     _signInEvent.call()
                 } else {
                     Log.w(TAG, "signInWithEmail: fail", task.exception)

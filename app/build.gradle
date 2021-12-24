@@ -70,7 +70,6 @@ dependencies {
     kapt "androidx.room:room-compiler:$roomVersion"
 
     //di
-    def hiltVersion = "1.0.0"
     implementation "com.google.dagger:hilt-android:$hiltCoreVersion"
     kapt "com.google.dagger:hilt-android-compiler:$hiltCoreVersion"
 
@@ -102,5 +101,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
     //firebase auth
+    def googleSignInVersion = "20.0.0"
     implementation "com.google.firebase:firebase-auth-ktx"
+    implementation "com.google.android.gms:play-services-auth:$googleSignInVersion"
 }

@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "783853064995-3cug8p5tjeo9umu5etp7t2iool2kd2cp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mskwak.toy_todo",
+            "certificate_hash": "68cd3c35b55ef0359e0f311a348fa646672237a0"
+          }
+        },
+        {
           "client_id": "783853064995-58dgo62q7r1grpn2ssduvceqp71g6mqa.apps.googleusercontent.com",
           "client_type": 3
         }

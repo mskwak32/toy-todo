@@ -83,7 +83,7 @@ class SignInViewModel @Inject constructor() : ViewModel() {
         auth.createUserWithEmailAndPassword(email.value!!, password.value!!)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.i(TAG, "create user with email : success")
+                    Log.d(TAG, "create user with email : success")
                     _onSaveNewUserEvent.call()
                 } else {
                     Log.w(TAG, "create user with email : failed", task.exception)

@@ -1,4 +1,5 @@
 <resources>
+    <string name="firebase_web_client_id" translatable="false">783853064995-58dgo62q7r1grpn2ssduvceqp71g6mqa.apps.googleusercontent.com</string>
     <string name="app_name">Toy Todo</string>
     <string name="todo">Todo</string>
     <string name="edit_task">Edit Task</string>

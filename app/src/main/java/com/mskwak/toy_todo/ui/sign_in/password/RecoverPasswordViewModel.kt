@@ -41,7 +41,7 @@ class RecoverPasswordViewModel @Inject constructor() : ViewModel() {
         auth.sendPasswordResetEmail(email.value!!)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.i(TAG, "send recover email: success")
+                    Log.d(TAG, "send recover email: success")
                     _onSendEvent.value = email.value
                 } else {
                     Log.w(TAG, "send recover email: fail", task.exception)
