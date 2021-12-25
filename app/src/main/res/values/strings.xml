@@ -1,4 +1,5 @@
 <resources>
+    <string name="firebase_web_client_id" translatable="false">783853064995-58dgo62q7r1grpn2ssduvceqp71g6mqa.apps.googleusercontent.com</string>
     <string name="app_name">Toy Todo</string>
     <string name="todo">Todo</string>
     <string name="edit_task">Edit Task</string>
@@ -29,4 +30,28 @@
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
     <string name="menu">Menu</string>
+
+    <string name="check_network">Please check network.</string>
+
+    <string name="email">Email</string>
+    <string name="next">Next</string>
+    <string name="password">Password</string>
+    <string name="signin">Sign in</string>
+    <string name="signout">Sign out</string>
+    <string name="send">Send</string>
+    <string name="signup">Create new account</string>
+    <string name="recover_password">Recover password</string>
+    <string name="forgot_password">Forgot your password?</string>
+    <string name="siginin_with_email">Sign in with email</string>
+    <string name="signin_with_google">Sign in with Google</string>
+    <string name="email_error">Please enter your email address.</string>
+    <string name="enter_your_password">Enter your password for that account.</string>
+    <string name="password_not_matched">The password is incorrect</string>
+    <string name="description_recover_password">Get instructions sent to this email that explain how to reset your password.</string>
+    <string name="check_your_email_title">Check your email</string>
+    <string name="check_your_email_description">Follow the instructions sent to %s to recover your password.</string>
+    <string name="new_password">New password</string>
+    <string name="new_password_error">Use at least 6 characters and a mix of letters and numbers</string>
+    <string name="message_authentication_fail">Authentication failed.\nPlease check network.</string>
+    <string name="message_too_many_request_auth">Too many authentication attempts were made.\nPlease try again later.</string>
 </resources>
