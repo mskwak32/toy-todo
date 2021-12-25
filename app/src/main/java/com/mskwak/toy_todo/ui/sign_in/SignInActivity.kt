@@ -6,8 +6,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.appbar.MaterialToolbar
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.mskwak.toy_todo.R
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,7 +16,6 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signin)
         setupActionBar()
-        currentUserSignOut()
     }
 
     private fun setupActionBar() {
@@ -34,11 +31,5 @@ class SignInActivity : AppCompatActivity() {
         return findNavController(R.id.fragmentContainerInSignIn).navigateUp() || super.onSupportNavigateUp()
     }
 
-    private fun currentUserSignOut() {
-        val auth = Firebase.auth
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            auth.signOut()
-        }
-    }
+
 }

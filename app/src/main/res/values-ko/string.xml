@@ -37,6 +37,7 @@
     <string name="next">다음</string>
     <string name="password">비밀번호</string>
     <string name="signin">로그인</string>
+    <string name="signout">로그아웃</string>
     <string name="send">보내기</string>
     <string name="signup">신규 가입</string>
     <string name="recover_password">비밀번호 재설정</string>

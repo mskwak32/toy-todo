@@ -21,10 +21,10 @@ class SignInFragment : BaseFragment<FragmentSigninBinding>() {
 
     override fun initState() {
         viewModel.onNextEvent.observe(viewLifecycleOwner) {
-            navigateToPassword()
+            navigateToPasswordFragment()
         }
         viewModel.onSaveNewUserEvent.observe(viewLifecycleOwner) {
-            goToMainActivity()
+            navigateToMainActivity()
         }
         viewModel.emailErrorMessage.observe(viewLifecycleOwner) { stringRes ->
             binding.emailInputLayout.error = stringRes?.let { getString(it) }
@@ -36,12 +36,12 @@ class SignInFragment : BaseFragment<FragmentSigninBinding>() {
 
     override fun getSnackbarEvent(): LiveData<Int> = viewModel.snackbarMessage
 
-    private fun navigateToPassword() {
+    private fun navigateToPasswordFragment() {
         val action = SignInFragmentDirections.signInFragmentToPasswordFragment()
         findNavController().navigate(action)
     }
 
-    private fun goToMainActivity() {
+    private fun navigateToMainActivity() {
         val intent = Intent(requireActivity(), MainActivity::class.java)
         startActivity(intent)
     }
