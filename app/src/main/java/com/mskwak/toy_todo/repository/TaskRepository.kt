@@ -1,4 +1,4 @@
-package com.mskwak.toy_todo.data
+package com.mskwak.toy_todo.repository
 
 import androidx.lifecycle.LiveData
 import com.mskwak.toy_todo.model.Task

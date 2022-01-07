@@ -1,16 +1,12 @@
-package com.mskwak.toy_todo.data
+package com.mskwak.toy_todo.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.mskwak.toy_todo.database.TaskDao
 import com.mskwak.toy_todo.model.Task
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import javax.inject.Inject
 
-class DefaultTaskRepository @Inject constructor(
-    private val taskDao: TaskDao,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+class DefaultTaskRepository(
+    private val taskDao: TaskDao
 ) : TaskRepository {
 
     override suspend fun insertTask(task: Task) {

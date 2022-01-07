@@ -39,6 +39,7 @@ android {
     testOptions {
         unitTests {
             includeAndroidResources = true
+            returnDefaultValues = true
         }
     }
 
@@ -48,11 +49,11 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def appCompatVersion = "1.4.0"
     def materialVersion = "1.4.0"
     def constraintVersion = "2.1.2"
     implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintVersion"
@@ -98,10 +99,12 @@ dependencies {
     implementation platform("com.google.firebase:firebase-bom:$firebaseBomVersion")
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
-    implementation 'com.google.firebase:firebase-analytics-ktx'
 
     //firebase auth
     def googleSignInVersion = "20.0.0"
     implementation "com.google.firebase:firebase-auth-ktx"
     implementation "com.google.android.gms:play-services-auth:$googleSignInVersion"
+
+    //firebase realtime database
+    implementation 'com.google.firebase:firebase-database-ktx'
 }

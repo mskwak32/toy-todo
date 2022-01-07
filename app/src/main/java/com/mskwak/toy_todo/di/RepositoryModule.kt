@@ -1,8 +1,8 @@
 package com.mskwak.toy_todo.di
 
-import com.mskwak.toy_todo.data.DefaultTaskRepository
-import com.mskwak.toy_todo.data.TaskRepository
 import com.mskwak.toy_todo.database.TaskDao
+import com.mskwak.toy_todo.repository.DefaultTaskRepository
+import com.mskwak.toy_todo.repository.TaskRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
