@@ -4,8 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.mskwak.toy_todo.database.TaskDao
 import com.mskwak.toy_todo.model.Task
+import javax.inject.Inject
 
-class DefaultTaskRepository(
+class TaskRepositoryImpl @Inject constructor(
     private val taskDao: TaskDao
 ) : TaskRepository {
 

@@ -30,6 +30,4 @@ class SignInActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return findNavController(R.id.fragmentContainerInSignIn).navigateUp() || super.onSupportNavigateUp()
     }
-
-
 }

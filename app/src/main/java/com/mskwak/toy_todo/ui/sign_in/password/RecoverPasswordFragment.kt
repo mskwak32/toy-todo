@@ -6,7 +6,9 @@ import androidx.navigation.fragment.findNavController
 import com.mskwak.toy_todo.R
 import com.mskwak.toy_todo.databinding.FragmentRecoverPasswordBinding
 import com.mskwak.toy_todo.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RecoverPasswordFragment : BaseFragment<FragmentRecoverPasswordBinding>() {
     override val layoutResId = R.layout.fragment_recover_password
     private val viewModel by viewModels<RecoverPasswordViewModel>()

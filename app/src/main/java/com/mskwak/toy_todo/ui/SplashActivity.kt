@@ -5,16 +5,21 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.mskwak.toy_todo.R
+import com.mskwak.toy_todo.repository.SignInRepository
 import com.mskwak.toy_todo.ui.main.MainActivity
 import com.mskwak.toy_todo.ui.sign_in.SignInActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @SuppressLint("CustomSplashScreen")
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var signInRepo: SignInRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,15 +36,12 @@ class SplashActivity : AppCompatActivity() {
 
     //로그인 되어있는 지 검사 후 다음 Activity로 이동
     private fun checkCurrentUser() {
-        val auth = Firebase.auth
-        auth.currentUser?.reload()?.addOnCompleteListener(this) { task ->
-            if (task.isSuccessful) {
+        signInRepo.isSignIn { isSignIn ->
+            if (isSignIn) {
                 navigateToMainActivity()
             } else {
                 navigateToSignInActivity()
             }
-        } ?: kotlin.run {
-            navigateToSignInActivity()
         }
     }
 
