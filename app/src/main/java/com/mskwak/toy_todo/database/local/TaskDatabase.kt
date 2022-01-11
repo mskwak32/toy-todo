@@ -1,4 +1,4 @@
-package com.mskwak.toy_todo.database
+package com.mskwak.toy_todo.database.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

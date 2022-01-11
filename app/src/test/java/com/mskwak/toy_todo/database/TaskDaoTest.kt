@@ -1,6 +1,7 @@
 package com.mskwak.toy_todo.database
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.mskwak.toy_todo.database.local.TaskDao
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.runBlocking
 import org.junit.Before

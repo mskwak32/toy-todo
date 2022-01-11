@@ -3,6 +3,7 @@ package com.mskwak.toy_todo.database
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import com.mskwak.toy_todo.database.local.TaskDatabase
 import org.junit.After
 import org.junit.Before
 import org.junit.runner.RunWith

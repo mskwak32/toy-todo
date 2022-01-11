@@ -15,9 +15,9 @@ data class Task(
         return if (title.isNotBlank()) title else memo
     }
 
-    val isActive
-        get() = !isCompleted
-
-    val isEmpty
-        get() = title.isBlank() && memo.isBlank()
+    companion object {
+        const val FIELD_TITLE = "title"
+        const val FIELD_MEMO = "memo"
+        const val FIELD_COMPLETED = "completed"
+    }
 }

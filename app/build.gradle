@@ -39,7 +39,6 @@ android {
     testOptions {
         unitTests {
             includeAndroidResources = true
-            returnDefaultValues = true
         }
     }
 
@@ -52,13 +51,12 @@ dependencies {
     def appCompatVersion = "1.4.0"
     def materialVersion = "1.4.0"
     def constraintVersion = "2.1.2"
+    def lifecycleVersion = "2.4.0"
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintVersion"
-
-    def lifecycleVersion = "2.4.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
@@ -76,9 +74,11 @@ dependencies {
 
     //coroutine
     def coroutinesVersion = "1.5.2"
+    def coroutinePlayServiceVersion = "1.3.3"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$coroutinePlayServiceVersion"
 
     //test
     def junitVersion = "4.13.2"
@@ -101,10 +101,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
 
     //firebase auth
-    def googleSignInVersion = "20.0.0"
+    def googleSignInVersion = "20.0.1"
     implementation "com.google.firebase:firebase-auth-ktx"
     implementation "com.google.android.gms:play-services-auth:$googleSignInVersion"
 
-    //firebase realtime database
-    implementation 'com.google.firebase:firebase-database-ktx'
+    //firebase firestore
+    implementation 'com.google.firebase:firebase-firestore-ktx'
 }

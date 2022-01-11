@@ -21,8 +21,8 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
-        binding?.lifecycleOwner = viewLifecycleOwner
-        return binding?.root
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
     open fun initState() {}
@@ -43,8 +43,12 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
         setupSnackbar()
     }
 
+<<<<<<< HEAD
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
     }
+=======
+    //TODO memory leak 해결하기
+>>>>>>> 79ffabb (firebase firestore 추가)
 }

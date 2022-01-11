@@ -4,41 +4,46 @@ import android.util.Log
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.mskwak.toy_todo.AppApplication
 import javax.inject.Inject
 
 class SignInRepositoryImpl @Inject constructor() : SignInRepository {
     private val auth = Firebase.auth
     private var email: String? = null
+        set(value) {
+            AppApplication.INSTANCE.currentUserEmail = value
+            field = value
+        }
 
     //이미 로그인되어 있는지 검사
     override fun isSignIn(callback: (isSignIn: Boolean) -> Unit) {
-        auth.currentUser?.reload()?.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
+        auth.currentUser?.reload()
+            ?.addOnSuccessListener {
                 callback.invoke(true)
                 email = auth.currentUser?.email
-            } else {
+
+            }?.addOnFailureListener {
                 callback.invoke(false)
-            }
-        } ?: kotlin.run {
+            } ?: kotlin.run {
             callback.invoke(false)
         }
     }
 
     override fun fetchEmail(email: String, callback: (emailExists: Result<Boolean>) -> Unit) {
-        auth.fetchSignInMethodsForEmail(email).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val isNewUser = task.result.signInMethods?.isEmpty() ?: true
+        auth.fetchSignInMethodsForEmail(email)
+            .addOnSuccessListener { result ->
+                val isNewUser = result.signInMethods?.isEmpty() ?: true
                 if (isNewUser) {
                     callback.invoke(Result.success(false))
                 } else {
                     callback.invoke(Result.success(true))
                 }
                 this.email = email
-            } else {
-                Log.w(TAG, "fetch email: fail", task.exception)
-                task.exception?.let { callback.invoke(Result.failure(it)) }
+
+            }.addOnFailureListener {
+                Log.w(TAG, "fetch email: fail", it)
+                callback.invoke(Result.failure(it))
             }
-        }
     }
 
     override fun createNewUser(
@@ -46,65 +51,63 @@ class SignInRepositoryImpl @Inject constructor() : SignInRepository {
         password: String,
         callback: (success: Result<Boolean>) -> Unit
     ) {
-        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnSuccessListener {
                 Log.d(TAG, "create user with email : success")
                 callback.invoke(Result.success(true))
-            } else {
-                Log.w(TAG, "create user with email : failed", task.exception)
-                task.exception?.let { callback.invoke(Result.failure(it)) }
+
+            }.addOnFailureListener {
+                Log.w(TAG, "create user with email : failed", it)
+                callback.invoke(Result.failure(it))
             }
-        }
     }
 
     override fun signInWithGoogle(idToken: String, callback: (success: Result<Boolean>) -> Unit) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
-        auth.signInWithCredential(credential).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Log.d(TAG, "sign in with credential: success")
-                callback.invoke(Result.success(true))
-                email = auth.currentUser?.email
-            } else {
-                Log.w(TAG, "sign in with credential: failed", task.exception)
-                task.exception?.let { callback.invoke(Result.failure(it)) }
-            }
+        auth.signInWithCredential(credential).addOnSuccessListener {
+            Log.d(TAG, "sign in with credential: success")
+            callback.invoke(Result.success(true))
+            email = auth.currentUser?.email
+
+        }.addOnFailureListener {
+            Log.w(TAG, "sign in with credential: failed", it)
+            callback.invoke(Result.failure(it))
         }
     }
 
     override fun signInWithEmail(password: String, callback: (success: Result<Boolean>) -> Unit) {
-        val email = getCurrentEmail() ?: kotlin.run {
+        if (email.isNullOrBlank()) {
             Log.e(TAG, "email is null")
             callback.invoke(Result.failure(Exception("email is null. fetch email first")))
             return
         }
 
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
+        auth.signInWithEmailAndPassword(email!!, password)
+            .addOnSuccessListener {
                 Log.d(TAG, "signInWithEmail: success")
                 callback.invoke(Result.success(true))
-            } else {
-                Log.w(TAG, "signInWithEmail: fail", task.exception)
-                task.exception?.let { callback.invoke(Result.failure(it)) }
+
+            }.addOnFailureListener {
+                Log.w(TAG, "signInWithEmail: fail", it)
+                callback.invoke(Result.failure(it))
             }
-        }
     }
 
     override fun sendPasswordReset(email: String, callback: (success: Result<Boolean>) -> Unit) {
-        auth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
+        auth.sendPasswordResetEmail(email)
+            .addOnSuccessListener {
                 Log.d(TAG, "send recover email: success")
                 callback.invoke(Result.success(true))
-            } else {
-                Log.w(TAG, "send recover email: fail", task.exception)
-                task.exception?.let { callback.invoke(Result.failure(it)) }
-            }
-        }
-    }
 
-    override fun getCurrentEmail(): String? = email
+            }.addOnFailureListener {
+                Log.w(TAG, "send recover email: fail", it)
+                callback.invoke(Result.failure(it))
+            }
+    }
 
     override fun signOut() {
         auth.signOut()
+        email = null
     }
 
     companion object {

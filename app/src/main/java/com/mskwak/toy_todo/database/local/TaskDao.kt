@@ -1,4 +1,4 @@
-package com.mskwak.toy_todo.database
+package com.mskwak.toy_todo.database.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
@@ -8,7 +8,7 @@ import com.mskwak.toy_todo.model.Task
 interface TaskDao {
 
     @Insert
-    suspend fun insertTask(task: Task)
+    suspend fun insertTask(task: Task): Long
 
     @Query("SELECT * FROM taskTable WHERE isCompleted = 0")
     fun observeActiveTasks(): LiveData<List<Task>>

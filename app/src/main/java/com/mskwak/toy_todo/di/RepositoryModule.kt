@@ -1,24 +1,33 @@
 package com.mskwak.toy_todo.di
 
+import com.mskwak.toy_todo.database.local.TaskDao
+import com.mskwak.toy_todo.database.remote.RemoteDataSource
 import com.mskwak.toy_todo.repository.SignInRepository
 import com.mskwak.toy_todo.repository.SignInRepositoryImpl
 import com.mskwak.toy_todo.repository.TaskRepository
 import com.mskwak.toy_todo.repository.TaskRepositoryImpl
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class RepositoryModule {
+class RepositoryModule {
 
-    @Binds
+    @Provides
     @Singleton
-    abstract fun bindTaskRepository(taskRepositoryImpl: TaskRepositoryImpl): TaskRepository
+    fun provideTaskRepository(
+        taskDao: TaskDao,
+        remoteDataSource: RemoteDataSource
+    ): TaskRepository {
+        return TaskRepositoryImpl(taskDao, remoteDataSource)
+    }
 
-    @Binds
+    @Provides
     @Singleton
-    abstract fun bindSignInRepository(signInRepositoryImpl: SignInRepositoryImpl): SignInRepository
+    fun bindSignInRepository(): SignInRepository {
+        return SignInRepositoryImpl()
+    }
 }

@@ -7,6 +7,5 @@ interface SignInRepository {
     fun signInWithGoogle(idToken: String, callback: (success: Result<Boolean>) -> Unit)
     fun signInWithEmail(password: String, callback: (success: Result<Boolean>) -> Unit)
     fun sendPasswordReset(email: String, callback: (success: Result<Boolean>) -> Unit)
-    fun getCurrentEmail(): String?
     fun signOut()
 }

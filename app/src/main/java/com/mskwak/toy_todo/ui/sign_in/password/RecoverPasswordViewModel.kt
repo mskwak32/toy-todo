@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.FirebaseTooManyRequestsException
+import com.mskwak.toy_todo.AppApplication
 import com.mskwak.toy_todo.R
 import com.mskwak.toy_todo.repository.SignInRepository
 import com.mskwak.toy_todo.util.SingleLiveEvent
@@ -15,7 +16,7 @@ import javax.inject.Inject
 class RecoverPasswordViewModel @Inject constructor(
     private val signInRepo: SignInRepository
 ) : ViewModel() {
-    val email = MutableLiveData<String>(signInRepo.getCurrentEmail())
+    val email = MutableLiveData<String>(AppApplication.INSTANCE.currentUserEmail)
 
     private val _emailErrorMessage = SingleLiveEvent<Int?>()
     val emailErrorMessage: LiveData<Int?> = _emailErrorMessage
