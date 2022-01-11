@@ -12,17 +12,17 @@ import com.google.android.material.snackbar.Snackbar
 import com.mskwak.toy_todo.util.setupSnackbar
 
 abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
-    protected lateinit var binding: VB
+    protected var binding: VB? = null
     abstract val layoutResId: Int
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
-        binding.lifecycleOwner = this
-        return binding.root
+        binding?.lifecycleOwner = viewLifecycleOwner
+        return binding?.root
     }
 
     open fun initState() {}
@@ -41,5 +41,10 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
         initDataBinding()
         initState()
         setupSnackbar()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }
