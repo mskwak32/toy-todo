@@ -2,8 +2,8 @@ package com.mskwak.toy_todo.ui.home
 
 import androidx.lifecycle.*
 import com.mskwak.toy_todo.R
-import com.mskwak.toy_todo.data.TaskRepository
 import com.mskwak.toy_todo.model.Task
+import com.mskwak.toy_todo.repository.TaskRepository
 import com.mskwak.toy_todo.util.SingleLiveEvent
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory

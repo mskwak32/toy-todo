@@ -12,16 +12,16 @@ import com.google.android.material.snackbar.Snackbar
 import com.mskwak.toy_todo.util.setupSnackbar
 
 abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
-    protected lateinit var binding: VB
+    protected var binding: VB? = null
     abstract val layoutResId: Int
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
@@ -42,4 +42,13 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
         initState()
         setupSnackbar()
     }
+
+<<<<<<< HEAD
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+=======
+    //TODO memory leak 해결하기
+>>>>>>> 79ffabb (firebase firestore 추가)
 }

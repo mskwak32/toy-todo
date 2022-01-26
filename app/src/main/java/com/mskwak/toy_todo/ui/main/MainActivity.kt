@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigateToSignInActivity() {
         val intent = Intent(this, SignInActivity::class.java)
+            .setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
         startActivity(intent)
         finish()
     }

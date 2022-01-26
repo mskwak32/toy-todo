@@ -1,23 +1,21 @@
 package com.mskwak.toy_todo.ui.sign_in
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.FirebaseTooManyRequestsException
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.mskwak.toy_todo.R
+import com.mskwak.toy_todo.repository.SignInRepository
 import com.mskwak.toy_todo.util.SingleLiveEvent
 import com.mskwak.toy_todo.util.TextUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SignInViewModel @Inject constructor() : ViewModel() {
-    private val auth: FirebaseAuth = Firebase.auth
+class SignInViewModel @Inject constructor(
+    private val signInRepo: SignInRepository
+) : ViewModel() {
 
     private val _isNewUser = MutableLiveData(false)
     val isNewUser: LiveData<Boolean> = _isNewUser
@@ -43,24 +41,21 @@ class SignInViewModel @Inject constructor() : ViewModel() {
             _emailErrorMessage.value = R.string.email_error
             return
         }
-        email.value?.let {
-            auth.fetchSignInMethodsForEmail(it).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val isNewUser = task.result.signInMethods?.isEmpty() ?: true
-                    if (isNewUser) {
-                        _isNewUser.value = true
-                    } else {
-                        _onNextEvent.call()
-                    }
+
+        signInRepo.fetchEmail(email.value!!) { result ->
+            result.onSuccess { emailExists ->
+                if (emailExists) {
+                    _onNextEvent.call()
                 } else {
-                    Log.w(TAG, "fetch email: fail", task.exception)
-                    when (task.exception) {
-                        is FirebaseTooManyRequestsException -> {
-                            _snackbarMessage.value = R.string.message_too_many_request_auth
-                        }
-                        else -> {
-                            _snackbarMessage.value = R.string.message_authentication_fail
-                        }
+                    _isNewUser.value = true
+                }
+            }.onFailure { e ->
+                when (e) {
+                    is FirebaseTooManyRequestsException -> {
+                        _snackbarMessage.value = R.string.message_too_many_request_auth
+                    }
+                    else -> {
+                        _snackbarMessage.value = R.string.message_authentication_fail
                     }
                 }
             }
@@ -80,23 +75,20 @@ class SignInViewModel @Inject constructor() : ViewModel() {
 
         if (error) return
 
-        auth.createUserWithEmailAndPassword(email.value!!, password.value!!)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.d(TAG, "create user with email : success")
-                    _onSaveNewUserEvent.call()
-                } else {
-                    Log.w(TAG, "create user with email : failed", task.exception)
-                    when (task.exception) {
-                        is FirebaseAuthWeakPasswordException -> {
-                            _pwErrorMessage.value = R.string.new_password_error
-                        }
-                        else -> {
-                            _snackbarMessage.value = R.string.message_authentication_fail
-                        }
+        signInRepo.createNewUser(email.value!!, password.value!!) { result ->
+            result.onSuccess {
+                _onSaveNewUserEvent.call()
+            }.onFailure { e ->
+                when (e) {
+                    is FirebaseAuthWeakPasswordException -> {
+                        _pwErrorMessage.value = R.string.new_password_error
+                    }
+                    else -> {
+                        _snackbarMessage.value = R.string.message_authentication_fail
                     }
                 }
             }
+        }
     }
 
     fun onEmailTextChange() {
@@ -106,9 +98,5 @@ class SignInViewModel @Inject constructor() : ViewModel() {
 
     fun onPasswordTextChanged() {
         _pwErrorMessage.value = null
-    }
-
-    companion object {
-        private val TAG = SignInViewModel::class.simpleName
     }
 }
