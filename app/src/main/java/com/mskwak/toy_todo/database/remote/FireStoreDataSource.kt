@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.*
-import com.mskwak.toy_todo.AppApplication
 import com.mskwak.toy_todo.model.Task
 import com.mskwak.toy_todo.model.Task.Companion.FIELD_COMPLETED
 import com.mskwak.toy_todo.model.Task.Companion.FIELD_MEMO
@@ -15,17 +14,12 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class FireStoreDataSource(
-    private val db: FirebaseFirestore
+    private val db: FirebaseFirestore,
+    private val uid: String
 ) : RemoteDataSource {
 
-    private val email: String
-        get() {
-            return AppApplication.INSTANCE.currentUserEmail ?: kotlin.run {
-                throw NullPointerException("email is null")
-            }
-        }
     private val todoRef: CollectionReference
-        get() = db.collection(USER_COLLECTION).document(email)
+        get() = db.collection(USER_COLLECTION).document(uid)
             .collection(TODO_COLLECTION)
 
     //변경 사항에 대한 liveData

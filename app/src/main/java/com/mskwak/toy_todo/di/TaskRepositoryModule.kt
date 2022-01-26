@@ -1,5 +1,6 @@
 package com.mskwak.toy_todo.di
 
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.mskwak.toy_todo.database.remote.FireStoreDataSource
@@ -20,7 +21,10 @@ class TaskRepositoryModule {
     @ActivityRetainedScoped
     fun provideRemoteDataSource(): RemoteDataSource {
         val db = Firebase.firestore
-        return FireStoreDataSource(db)
+        val uid = Firebase.auth.currentUser?.uid ?: kotlin.run {
+            throw Exception("TaskRepositoryModule: uid is null")
+        }
+        return FireStoreDataSource(db, uid)
     }
 
     @Provides
