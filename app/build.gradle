@@ -62,12 +62,6 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
-    //room
-    def roomVersion = "2.4.0"
-    implementation "androidx.room:room-runtime:$roomVersion"
-    implementation "androidx.room:room-ktx:$roomVersion"
-    kapt "androidx.room:room-compiler:$roomVersion"
-
     //di
     implementation "com.google.dagger:hilt-android:$hiltCoreVersion"
     kapt "com.google.dagger:hilt-android-compiler:$hiltCoreVersion"
