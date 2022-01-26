@@ -9,9 +9,7 @@ import com.mskwak.toy_todo.util.SingleLiveEvent
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 class EditViewModel @AssistedInject constructor(
@@ -39,11 +37,9 @@ class EditViewModel @AssistedInject constructor(
         taskId?.let {
             viewModelScope.launch {
                 repository.getTaskById(it).onSuccess {
-                    withContext(Dispatchers.Main) {
-                        task = it
-                        title.value = it.title
-                        memo.value = it.memo
-                    }
+                    task = it
+                    title.value = it.title
+                    memo.value = it.memo
                 }.onFailure {
                     Log.e(TAG, it.toString())
                     _snackbarMessage.value = R.string.error_load_tasks
