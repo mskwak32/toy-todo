@@ -26,7 +26,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     override fun getSnackbarEvent(): LiveData<Int> = viewModel.snackbarMessage
 
     override fun initDataBinding() {
-        binding.viewModel = viewModel
+        binding?.viewModel = viewModel
     }
 
     override fun initState() {

@@ -28,7 +28,7 @@ class SignInHomeFragment : BaseFragment<FragmentSigninHomeBinding>() {
 
     override fun getSnackbarEvent(): LiveData<Int> = viewModel.snackbarMessage
     override fun initDataBinding() {
-        binding.fragment = this
+        binding?.fragment = this
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

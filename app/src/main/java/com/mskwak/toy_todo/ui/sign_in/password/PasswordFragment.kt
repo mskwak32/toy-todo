@@ -23,15 +23,15 @@ class PasswordFragment : BaseFragment<FragmentPasswordBinding>() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = FragmentPasswordBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun getSnackbarEvent(): LiveData<Int> = viewModel.snackbarMessage
 
     override fun initDataBinding() {
-        binding.viewModel = viewModel
+        binding?.viewModel = viewModel
     }
 
     override fun initState() {
@@ -42,7 +42,7 @@ class PasswordFragment : BaseFragment<FragmentPasswordBinding>() {
             navigateToRecoverPw()
         }
         viewModel.pwErrorMessage.observe(viewLifecycleOwner) { stringRes ->
-            binding.inputLayout.error = stringRes?.let { getString(it) }
+            binding?.inputLayout?.error = stringRes?.let { getString(it) }
         }
     }
 
