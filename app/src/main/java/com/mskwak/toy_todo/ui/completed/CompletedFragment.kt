@@ -31,9 +31,9 @@ class CompletedFragment : BaseFragment<FragmentCompletedBinding>() {
     override fun getSnackbarEvent(): LiveData<Int> = viewModel.snacbarMessage
 
     override fun initDataBinding() {
-        binding.viewModel = viewModel
-        binding.adapter = adapter
-        binding.recyclerView.addItemDecoration(ListItemDecoration())
+        binding?.viewModel = viewModel
+        binding?.adapter = adapter
+        binding?.recyclerView?.addItemDecoration(ListItemDecoration())
     }
 
     override fun initState() {

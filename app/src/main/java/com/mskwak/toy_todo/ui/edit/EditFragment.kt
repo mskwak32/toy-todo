@@ -30,7 +30,7 @@ class EditFragment : BaseFragment<FragmentEditBinding>() {
     override fun getSnackbarEvent(): LiveData<Int> = viewModel.snackbarMessage
 
     override fun initDataBinding() {
-        binding.viewModel = viewModel
+        binding?.viewModel = viewModel
     }
 
     @SuppressLint("ClickableViewAccessibility")

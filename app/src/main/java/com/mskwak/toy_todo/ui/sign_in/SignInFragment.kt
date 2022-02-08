@@ -16,7 +16,7 @@ class SignInFragment : BaseFragment<FragmentSigninBinding>() {
     private val viewModel by viewModels<SignInViewModel>()
 
     override fun initDataBinding() {
-        binding.viewModel = this.viewModel
+        binding?.viewModel = this.viewModel
     }
 
     override fun initState() {
@@ -27,10 +27,10 @@ class SignInFragment : BaseFragment<FragmentSigninBinding>() {
             navigateToMainActivity()
         }
         viewModel.emailErrorMessage.observe(viewLifecycleOwner) { stringRes ->
-            binding.emailInputLayout.error = stringRes?.let { getString(it) }
+            binding?.emailInputLayout?.error = stringRes?.let { getString(it) }
         }
         viewModel.pwErrorMessage.observe(viewLifecycleOwner) { stringRes ->
-            binding.passwordInputLayout.error = stringRes?.let { getString(it) }
+            binding?.passwordInputLayout?.error = stringRes?.let { getString(it) }
         }
     }
 

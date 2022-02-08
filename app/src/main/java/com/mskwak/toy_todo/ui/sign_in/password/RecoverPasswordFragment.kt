@@ -16,12 +16,12 @@ class RecoverPasswordFragment : BaseFragment<FragmentRecoverPasswordBinding>() {
     override fun getSnackbarEvent(): LiveData<Int> = viewModel.snackbarMessage
 
     override fun initDataBinding() {
-        binding.viewModel = viewModel
+        binding?.viewModel = viewModel
     }
 
     override fun initState() {
         viewModel.emailErrorMessage.observe(viewLifecycleOwner) { stringRes ->
-            binding.inputLayout.error = stringRes?.let { getString(it) }
+            binding?.inputLayout?.error = stringRes?.let { getString(it) }
         }
         viewModel.onSendEvent.observe(viewLifecycleOwner) { email ->
             showSendAlertDialog(email)
