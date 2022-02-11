@@ -19,6 +19,7 @@
     <string name="message_marked_active">Task marked active</string>
     <string name="message_completed_tasks_cleared">Completed tasks cleared</string>
     <string name="message_empty_task">Task cannot be empty</string>
+    <string name="message_delete_confirm">Are you sure you want to delete?</string>
     <string name="no_active_tasks">No active tasks.</string>
     <string name="no_completed_tasks">No completed tasks.</string>
     <string name="error_load_tasks">Error while loading tasks.</string>

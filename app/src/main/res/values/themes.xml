@@ -32,4 +32,8 @@
     <style name="recoverPasswordTextColor">
         <item name="android:textColor">@color/primaryDarkColor</item>
     </style>
+
+    <style name="textColorGreen">
+        <item name="android:textColor">@color/primaryColor</item>
+    </style>
 </resources>

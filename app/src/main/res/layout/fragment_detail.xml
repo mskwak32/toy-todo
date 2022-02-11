@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:minWidth="48dp"
-                android:onClick="@{() -> viewModel.deleteTask()}"
+                android:onClick="@{() -> viewModel.onDeleteClick()}"
                 android:orientation="vertical"
                 android:padding="4dp"
                 app:layout_constraintLeft_toRightOf="@id/editButton"
