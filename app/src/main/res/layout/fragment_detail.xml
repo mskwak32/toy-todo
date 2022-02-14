@@ -30,22 +30,22 @@
 
                 <TextView
                     android:id="@+id/title"
-                    style="@style/detailTaskTextViewStyle"
+                    style="@style/detailTaskTextViewColor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/detail_textview_bg"
-                    android:padding="16dp"
+                    android:paddingLeft="16dp"
                     android:text='@{viewModel.task.title?? ""}'
+                    android:textSize="30sp"
+                    android:textStyle="bold"
                     tools:text="title" />
 
                 <TextView
                     android:id="@+id/memo"
-                    style="@style/detailTaskTextViewStyle"
+                    style="@style/detailTaskTextViewColor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/detail_textview_bg"
-                    android:padding="16dp"
+                    android:paddingLeft="16dp"
                     android:text='@{viewModel.task.memo?? ""}'
                     tools:text="memo" />
 
