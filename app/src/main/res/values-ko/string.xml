@@ -19,6 +19,7 @@
     <string name="message_marked_active">작업이 복원되었습니다.</string>
     <string name="message_completed_tasks_cleared">완료된 작업이 삭제되었습니다.</string>
     <string name="message_empty_task">빈 작업은 생성할 수 없습니다.</string>
+    <string name="message_delete_confirm">삭제하시겠습니까?</string>
     <string name="no_active_tasks">해야할 작업이 없습니다.</string>
     <string name="no_completed_tasks">완료된 작업이 없습니다.</string>
     <string name="error_load_tasks">작업을 불러오는 중 오류가 발생하였습니다.</string>

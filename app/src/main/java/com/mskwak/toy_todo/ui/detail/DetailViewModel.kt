@@ -30,6 +30,9 @@ class DetailViewModel @AssistedInject constructor(
     private val _onDeletedEvent = SingleLiveEvent<Unit>()
     val onDeleteEvent: LiveData<Unit> = _onDeletedEvent
 
+    private val _onDeleteClickEvent = SingleLiveEvent<Unit>()
+    val onDeleteClickEvent: LiveData<Unit> = _onDeleteClickEvent
+
     private fun computeResult(result: Result<Task>): Task? {
         return if (result.isSuccess) {
             result.getOrNull()
@@ -61,6 +64,10 @@ class DetailViewModel @AssistedInject constructor(
                 _onDeletedEvent.call()
             }
         }
+    }
+
+    fun onDeleteClick() {
+        _onDeleteClickEvent.call()
     }
 
 

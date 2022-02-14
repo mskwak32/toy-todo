@@ -8,6 +8,7 @@ import androidx.navigation.fragment.navArgs
 import com.mskwak.toy_todo.R
 import com.mskwak.toy_todo.databinding.FragmentDetailBinding
 import com.mskwak.toy_todo.ui.base.BaseFragment
+import com.mskwak.toy_todo.ui.dialog.DeleteTaskConfirmDialog
 import com.mskwak.toy_todo.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -36,6 +37,9 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
         viewModel.onEditEvent.observe(viewLifecycleOwner) {
             navigateToEditFragment()
         }
+        viewModel.onDeleteClickEvent.observe(viewLifecycleOwner) {
+            showDeleteConfirmDialog()
+        }
     }
 
     private fun finishWithMessage(@StringRes stringId: Int) {
@@ -51,5 +55,9 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
                 title
             )
         findNavController().navigate(action)
+    }
+
+    private fun showDeleteConfirmDialog() {
+        DeleteTaskConfirmDialog(viewModel).show(childFragmentManager, null)
     }
 }

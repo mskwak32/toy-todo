@@ -3,7 +3,10 @@ package com.mskwak.toy_todo.database.remote
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.firebase.firestore.*
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import com.mskwak.toy_todo.model.Task
 import com.mskwak.toy_todo.model.Task.Companion.FIELD_COMPLETED
 import com.mskwak.toy_todo.model.Task.Companion.FIELD_MEMO
@@ -11,7 +14,8 @@ import com.mskwak.toy_todo.model.Task.Companion.FIELD_TITLE
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 class FireStoreDataSource(
     private val db: FirebaseFirestore,
@@ -108,14 +112,19 @@ class FireStoreDataSource(
 
     override suspend fun getTaskById(taskId: Long): Task? {
         var task: Task? = null
+        val latch = CountDownLatch(1)
         todoRef.document(taskId.toString()).get().addOnSuccessListener {
             val title = it.getString(FIELD_TITLE) ?: ""
             val memo = it.getString(FIELD_MEMO) ?: ""
             val isCompleted = it.getBoolean(FIELD_COMPLETED) ?: false
             task = Task(taskId, title, memo, isCompleted)
+            latch.countDown()
         }.addOnFailureListener {
             Log.w(TAG, "get task from firestore: fail", it)
-        }.await()
+            latch.countDown()
+        }
+
+        latch.await(500, TimeUnit.MILLISECONDS)
 
         return task
     }

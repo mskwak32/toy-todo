@@ -18,13 +18,15 @@
         <item name="android:textColorSecondary">@color/secondaryTextColor</item>
     </style>
 
-    <style name="detailTaskTextViewStyle" parent="Widget.MaterialComponents.TextView">
-        <item name="background">@drawable/detail_textview_bg</item>
+    <style name="detailTaskTextViewColor" parent="Widget.MaterialComponents.TextView">
         <item name="android:textColor">@color/primaryTextColor</item>
-        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="recoverPasswordTextColor">
         <item name="android:textColor">@color/primaryLightColor</item>
+    </style>
+
+    <style name="textColorGreen">
+        <item name="android:textColor">@color/primaryTextColor</item>
     </style>
 </resources>
